@@ -6,13 +6,28 @@
     <title>Redirecting...</title>
     <script type="text/javascript">
         window.onload = function() {
-            fetch('https://raw.githubusercontent.com/chubblubdub/mysteryQRcode/contents/redirect-config.json')
+            // Fetch the JSON configuration file from GitHub
+            fetch('https://api.github.com/repos/chubblubdub/mysteryQRcode/contents/redirect-config.json')
                 .then(response => response.json())
                 .then(data => {
-                    window.location.replace(data.redirectUrl);
+                    // Decode the Base64 encoded content
+                    const decodedContent = atob(data.content);
+                    // Parse the decoded content as JSON
+                    const config = JSON.parse(decodedContent);
+                    // Check if the redirectUrl is present and redirect
+                    if (config.redirectUrl) {
+                        window.location.replace(config.redirectUrl);
+                    } else {
+                        console.error('Redirect URL not found in the configuration.');
+                    }
                 })
                 .catch(error => {
                     console.error('Error fetching redirect URL:', error);
                 });
         }
     </script>
+</head>
+<body>
+    <p>Redirecting...</p>
+</body>
+</html>
