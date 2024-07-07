@@ -20,5 +20,5 @@ jobs:
           pip install requests  # Install any required Python packages
 
       - name: Run Python script
-        run: python path/to/update_url.py ${{ github.event.client_payload.new_url }}
+        run: python scripts/update_url.py ${{ github.event.client_payload.new_url }}
         # Adjust path/to/update_url.py to the actual path of your Python script
