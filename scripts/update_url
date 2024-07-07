@@ -1,40 +1,33 @@
+import os
 import requests
-import base64
-import json
-import sys
 
-# GitHub repository details
-repo_owner = 'chubblubdub'
-repo_name = 'mysteryQRcode'
-file_path = 'redirect-config.json'
-token = 'token'
+# Retrieve the GitHub token from the environment variable
+token = os.getenv('CHUB_TOKEN')
 
-# New redirect URL from command-line argument
-new_url = sys.argv[1]  # Get the new URL from command-line argument
+# Ensure the token is present
+if not token:
+    raise ValueError("GitHub token not found. Please set the GITHUB_TOKEN environment variable.")
 
-# GitHub API endpoints
-api_url = f'https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}'
+# Your script logic here
+# Example API request using the token
+def update_config(new_url):
+    url = 'https://api.github.com/repos/chubblubdub/mysteryQRcode/contents/redirect-config.json'
+    headers = {
+        'Authorization': f'token {token}',
+        'Accept': 'application/vnd.github.v3+json'
+    }
+    # Example JSON payload
+    payload = {
+        'message': 'Update redirect URL',
+        'content': 'base64-encoded-content-here',  # Replace with actual base64 content
+        'sha': 'sha-of-the-file'  # Replace with actual SHA
+    }
+    response = requests.put(url, json=payload, headers=headers)
+    if response.status_code == 200:
+        print('File updated successfully.')
+    else:
+        print(f'Error: {response.status_code} - {response.text}')
 
-# Fetch the current file content and SHA
-response = requests.get(api_url, headers={'Authorization': f'token {token}'})
-file_info = response.json()
-current_sha = file_info['sha']
-
-# Prepare new file content
-new_content = {
-    'redirectUrl': new_url
-}
-encoded_content = base64.b64encode(json.dumps(new_content).encode()).decode()
-
-# Update the file on GitHub
-data = {
-    'message': 'Update redirect URL',
-    'content': encoded_content,
-    'sha': current_sha
-}
-
-response = requests.put(api_url, headers={'Authorization': f'token {token}'}, json=data)
-if response.status_code == 200:
-    print('File updated successfully!')
-else:
-    print('Failed to update file:', response.json())
+# Example usage
+new_url = 'https://example.com'
+update_config(new_url)
