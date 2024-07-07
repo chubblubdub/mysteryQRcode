@@ -1,24 +1,27 @@
-name: Run Python Script
+name: Update Redirect URL
 
 on:
   repository_dispatch:
     types: [update-url]
 
 jobs:
-  run-script:
+  update-url:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3  # Checks out your repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
       - name: Set up Python
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v4
         with:
-          python-version: '3.x'  # Specify the Python version
+          python-version: '3.9'
 
       - name: Install dependencies
         run: |
-          pip install requests  # Install any required Python packages
+          pip install requests
 
-      - name: Run Python script
-        run: python scripts/update_url.py ${{ github.event.client_payload.new_url }}
-        # Adjust path/to/update_url.py to the actual path of your Python script
+      - name: Run update URL script
+        run: |
+          python .github/scripts/update_url.py ${{ github.event.client_payload.url }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.CHUB_TOKEN }}
