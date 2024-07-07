@@ -1,6 +1,0 @@
-export GITHUB_TOKEN="your_personal_access_token"
-curl -X PUT \
-  -H "Authorization: token $GITHUB_TOKEN" \
-  -H "Accept: application/vnd.github.v3+json" \
-  -d '{"message": "Update redirect URL", "content": ewogICJyZWRpcmVjdFVybCI6ICJodHRwczovL3d3dy5hbWF6b24uY29tIgp9}' \
-  "https://api.github.com/repos/chubblubdub/mysteryQRcode/contents/redirect-config.json"
