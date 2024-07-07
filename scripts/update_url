@@ -1,0 +1,40 @@
+import requests
+import base64
+import json
+import sys
+
+# GitHub repository details
+repo_owner = 'chubblubdub'
+repo_name = 'mysteryQRcode'
+file_path = 'redirect-config.json'
+token = 'token'
+
+# New redirect URL from command-line argument
+new_url = sys.argv[1]  # Get the new URL from command-line argument
+
+# GitHub API endpoints
+api_url = f'https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}'
+
+# Fetch the current file content and SHA
+response = requests.get(api_url, headers={'Authorization': f'token {token}'})
+file_info = response.json()
+current_sha = file_info['sha']
+
+# Prepare new file content
+new_content = {
+    'redirectUrl': new_url
+}
+encoded_content = base64.b64encode(json.dumps(new_content).encode()).decode()
+
+# Update the file on GitHub
+data = {
+    'message': 'Update redirect URL',
+    'content': encoded_content,
+    'sha': current_sha
+}
+
+response = requests.put(api_url, headers={'Authorization': f'token {token}'}, json=data)
+if response.status_code == 200:
+    print('File updated successfully!')
+else:
+    print('Failed to update file:', response.json())
