@@ -1,3 +1,8 @@
 {
-  "redirectUrl": "https://www.google.com"
+  "redirectUrls": [
+    "https://www.amazon.com",
+    "https://www.google.com",
+    "https://www.github.com",
+    "https://www.bing.com"
+  ]
 }
