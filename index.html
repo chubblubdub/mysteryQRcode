@@ -6,7 +6,7 @@
     <title>Redirecting...</title>
     <script type="text/javascript">
         window.onload = function() {
-            fetch('https://raw.githubusercontent.com/chubblubdub/mysterQRcode/config/redirect-config.json')
+            fetch('https://raw.githubusercontent.com/chubblubdub/mysteryQRcode/contents/redirect-config.json')
                 .then(response => response.json())
                 .then(data => {
                     window.location.replace(data.redirectUrl);
