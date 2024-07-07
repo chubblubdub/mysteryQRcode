@@ -1,5 +1,13 @@
 import os
 import requests
+import base64
+import json
+import sys
+
+# GitHub repository details
+repo_owner = 'chubblubdub'
+repo_name = 'mysteryQRcode'
+file_path = 'redirect-config.json'  # Adjust path as needed
 
 # Retrieve the GitHub token from the environment variable
 token = os.getenv('CHUB_TOKEN')
@@ -8,19 +16,37 @@ token = os.getenv('CHUB_TOKEN')
 if not token:
     raise ValueError("GitHub token not found. Please set the GITHUB_TOKEN environment variable.")
 
-# Your script logic here
-# Example API request using the token
-def update_config(new_url):
-    url = 'https://api.github.com/repos/chubblubdub/mysteryQRcode/contents/redirect-config.json'
+def get_file_sha(repo_owner, repo_name, file_path):
+    """Retrieve the SHA hash of the file from GitHub."""
+    url = f'https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}'
     headers = {
         'Authorization': f'token {token}',
         'Accept': 'application/vnd.github.v3+json'
     }
-    # Example JSON payload
+    response = requests.get(url, headers=headers)
+    if response.status_code == 200:
+        content = response.json()
+        return content['sha']
+    else:
+        raise ValueError(f"Failed to retrieve file details: {response.status_code} - {response.text}")
+
+def encode_content(content):
+    """Base64 encode the content."""
+    encoded_bytes = base64.b64encode(content.encode('utf-8'))
+    encoded_str = encoded_bytes.decode('utf-8')
+    return encoded_str
+
+def update_file(repo_owner, repo_name, file_path, new_content, file_sha):
+    """Update the file on GitHub with the new content."""
+    url = f'https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}'
+    headers = {
+        'Authorization': f'token {token}',
+        'Accept': 'application/vnd.github.v3+json'
+    }
     payload = {
         'message': 'Update redirect URL',
-        'content': 'base64-encoded-content-here',  # Replace with actual base64 content
-        'sha': 'sha-of-the-file'  # Replace with actual SHA
+        'content': new_content,
+        'sha': file_sha
     }
     response = requests.put(url, json=payload, headers=headers)
     if response.status_code == 200:
@@ -28,6 +54,24 @@ def update_config(new_url):
     else:
         print(f'Error: {response.status_code} - {response.text}')
 
+# Main function to update the file
+def main(new_url):
+    file_sha = get_file_sha(repo_owner, repo_name, file_path)
+    print(f'SHA of {file_path}: {file_sha}')
+
+    # Prepare new JSON content
+    new_json_content = {
+        "redirectUrl": new_url
+    }
+    new_json_str = json.dumps(new_json_content)
+    new_encoded_content = encode_content(new_json_str)
+    print(f'Base64 encoded content: {new_encoded_content}')
+
+    update_file(repo_owner, repo_name, file_path, new_encoded_content, file_sha)
+
 # Example usage
-new_url = 'https://example.com'
-update_config(new_url)
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        raise ValueError("Please provide the new URL as an argument.")
+    new_url = sys.argv[1]
+    main(new_url)
