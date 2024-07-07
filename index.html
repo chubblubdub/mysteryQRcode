@@ -1,33 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="0; url=https://www.amazon.com">
     <title>Redirecting...</title>
     <script type="text/javascript">
         window.onload = function() {
-            // Fetch the JSON configuration file from GitHub
-            fetch('https://api.github.com/repos/chubblubdub/mysteryQRcode/contents/redirect-config.json')
+            fetch('https://raw.githubusercontent.com/chubblubdub/mysteryQRcode/main/redirect-config.json')
                 .then(response => response.json())
                 .then(data => {
-                    // Decode the Base64 encoded content
-                    const decodedContent = atob(data.content);
-                    // Parse the decoded content as JSON
-                    const config = JSON.parse(decodedContent);
-                    // Check if the redirectUrl is present and redirect
-                    if (config.redirectUrl) {
-                        window.location.replace(config.redirectUrl);
-                    } else {
-                        console.error('Redirect URL not found in the configuration.');
-                    }
+                    window.location.replace(data.redirectUrl);
                 })
                 .catch(error => {
                     console.error('Error fetching redirect URL:', error);
                 });
         }
     </script>
-</head>
-<body>
-    <p>Redirecting...</p>
-</body>
-</html>
