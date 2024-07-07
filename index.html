@@ -9,10 +9,17 @@
             fetch('https://raw.githubusercontent.com/chubblubdub/mysteryQRcode/main/redirect-config.json')
                 .then(response => response.json())
                 .then(data => {
-                    window.location.replace(data.redirectUrl);
+                    if (data.redirectUrls && data.redirectUrls.length > 0) {
+                        // Pick a random URL from the list
+                        const randomIndex = Math.floor(Math.random() * data.redirectUrls.length);
+                        const randomUrl = data.redirectUrls[randomIndex];
+                        window.location.replace(randomUrl);
+                    } else {
+                        console.error('No URLs found in config.');
+                    }
                 })
                 .catch(error => {
-                    console.error('Error fetching redirect URL:', error);
+                    console.error('Error fetching redirect URLs:', error);
                 });
         }
     </script>
