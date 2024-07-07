@@ -1,0 +1,24 @@
+name: Run Python Script
+
+on:
+  repository_dispatch:
+    types: [update-url]
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3  # Checks out your repository
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.x'  # Specify the Python version
+
+      - name: Install dependencies
+        run: |
+          pip install requests  # Install any required Python packages
+
+      - name: Run Python script
+        run: python path/to/update_url.py ${{ github.event.client_payload.new_url }}
+        # Adjust path/to/update_url.py to the actual path of your Python script
