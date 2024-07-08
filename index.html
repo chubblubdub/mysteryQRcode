@@ -93,15 +93,6 @@
             }
         }
 
-        @keyframes stretch {
-            0%, 100% {
-                transform: scaleX(1);
-            }
-            50% {
-                transform: scaleX(1.2);
-            }
-        }
-
         .white-screen {
             position: fixed;
             top: 0;
@@ -144,6 +135,12 @@
             font-size: 1.5rem; /* Fixed size */
             color: #ddd;
             text-transform: lowercase;
+        }
+
+        .footer .chub {
+            display: inline-block;
+            font-stretch: expanded; /* Stretch the text */
+            letter-spacing: 0.1em; /* Adjust letter spacing */
         }
     </style>
 </head>
