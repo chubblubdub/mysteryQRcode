@@ -55,28 +55,25 @@
 
         .refresh-button {
             margin-bottom: 5vh; /* Margin relative to viewport height */
-            padding: 2vh 4vw;
+            padding: 1rem 2rem;
             background: #fff;
             border: none;
-            border-radius: 1vw;
+            border-radius: 0.5rem;
             cursor: not-allowed;
-            box-shadow: 0 0.5vh 1vh rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
             position: relative;
-            font-size: 2vw; /* Size relative to viewport width */
+            font-size: 1.5rem; /* Font size relative to viewport width */
             color: #000;
             pointer-events: none; /* Make the button non-clickable */
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 25vw;
-            height: 8vh;
             text-transform: lowercase;
         }
 
         .refresh-button .loading-message {
-            font-size: 2vw; /* Size relative to viewport width */
+            font-size: 1.5rem; /* Font size relative to viewport width */
             color: #000;
-            margin-bottom: 2vh; /* Margin relative to viewport height */
             position: relative;
         }
 
@@ -84,26 +81,26 @@
         .refresh-button .loading-message::after {
             content: '.';
             position: absolute;
-            color: transparent;
+            color: black;
             animation: blink 1.5s infinite step-start;
         }
 
         .refresh-button .loading-message::before {
-            left: 1vw;
+            left: 0;
             animation-delay: 0s;
         }
 
         .refresh-button .loading-message::after {
-            left: 2vw;
+            left: 1rem;
             animation-delay: 0.5s;
         }
 
         @keyframes blink {
             0%, 100% {
-                color: transparent;
+                color: black;
             }
             50% {
-                color: black;
+                color: transparent;
             }
         }
 
