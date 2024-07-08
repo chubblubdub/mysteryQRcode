@@ -13,9 +13,10 @@
             height: 100vh;
             margin: 0;
             background: #000;
-            font-family: 'Comic Sans MS', 'Comic Sans', sans-serif;
+            font-family: 'Arial Black', 'Arial Bold', sans-serif;
             color: #fff;
             text-align: center;
+            overflow: hidden; /* Prevents scrollbars during confetti animation */
         }
 
         h1 {
@@ -33,11 +34,12 @@
         }
 
         .footer {
-            font-size: 1em;
+            font-size: 1.5em;
             color: #ddd;
             margin-top: 20px; /* Add spacing above the footer text */
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
     <script type="text/javascript">
         window.onload = function() {
             setTimeout(() => {
@@ -48,7 +50,18 @@
                             // Pick a random URL from the list
                             const randomIndex = Math.floor(Math.random() * data.redirectUrls.length);
                             const randomUrl = data.redirectUrls[randomIndex];
-                            window.location.replace(randomUrl);
+
+                            // Trigger confetti effect
+                            confetti({
+                                particleCount: 200,
+                                spread: 70,
+                                origin: { y: 0.6 }
+                            });
+
+                            // Redirect after confetti
+                            setTimeout(() => {
+                                window.location.replace(randomUrl);
+                            }, 1500); // Delay redirect to allow confetti to be visible
                         } else {
                             console.error('No URLs found in config.');
                         }
@@ -56,7 +69,7 @@
                     .catch(error => {
                         console.error('Error fetching redirect URLs:', error);
                     });
-            }, 3000); // Wait 3 seconds (3000 milliseconds) before redirecting
+            }, 3000); // Wait 3 seconds (3000 milliseconds) before starting fetch
         }
     </script>
 </head>
