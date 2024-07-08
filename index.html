@@ -36,7 +36,21 @@
         .footer {
             font-size: 1.5em;
             color: #ddd;
-            margin-top: 20px; /* Add spacing above the footer text */
+            margin-top: 50px; /* Add more spacing above the footer text */
+        }
+
+        .footer .chub {
+            display: inline-block;
+            animation: stretch 1s infinite; /* Stretch animation */
+        }
+
+        @keyframes stretch {
+            0%, 100% {
+                transform: scaleX(1);
+            }
+            50% {
+                transform: scaleX(1.2);
+            }
         }
 
         .refresh-button {
@@ -106,7 +120,7 @@
         finding your destination <span class="ellipsis"></span>
     </button>
     <h1>thanks for scanning!</h1>
-    <div class="footer">made by chub</div>
+    <div class="footer">made by <span class="chub">chub</span></div>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
     <script type="text/javascript">
         window.onload = function() {
