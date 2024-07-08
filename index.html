@@ -77,9 +77,10 @@
         }
 
         @keyframes dot-blink {
-            0% { content: '.'; }
-            50% { content: '..'; }
-            100% { content: '...'; }
+            0% { content: 'finding your destination.'; }
+            33% { content: 'finding your destination..'; }
+            66% { content: 'finding your destination...'; }
+            100% { content: 'finding your destination.'; }
         }
 
         @keyframes dance {
@@ -153,7 +154,7 @@
     
     <!-- Button now above the title -->
     <button class="refresh-button">
-        <span class="loading-message">finding your destination</span>
+        <span class="loading-message">finding your destination.</span>
     </button>
     <h1>thanks for scanning!</h1>
     <div class="footer">made by <span class="chub">chub</span></div>
