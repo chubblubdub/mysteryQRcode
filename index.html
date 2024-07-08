@@ -69,11 +69,38 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            /* Ensure the button size is constant */
+            width: 250px;
+            height: 50px;
+        }
+
+        .refresh-button .ellipsis {
+            position: relative;
+            display: inline-block;
+        }
+
+        .refresh-button .ellipsis::before,
+        .refresh-button .ellipsis::after {
+            content: '.';
+            position: absolute;
+            color: #000;
+            font-size: 1.2em;
+            animation: ellipsis 1s infinite;
+        }
+
+        .refresh-button .ellipsis::before {
+            left: 0;
+            opacity: 1;
         }
 
         .refresh-button .ellipsis::after {
-            content: '...';
+            left: 1em;
+            opacity: 0.5;
+        }
+
+        .refresh-button .ellipsis span {
             animation: ellipsis 1s infinite;
+            opacity: 0.5;
         }
 
         .refresh-button:hover {
@@ -98,26 +125,21 @@
         /* Animation for ellipsis */
         @keyframes ellipsis {
             0% {
-                content: '.';
-            }
-            25% {
-                content: '..';
+                opacity: 1;
             }
             50% {
-                content: '...';
-            }
-            75% {
-                content: '..';
+                opacity: 0.5;
             }
             100% {
-                content: '.';
+                opacity: 1;
             }
         }
     </style>
 </head>
 <body>
     <button class="refresh-button">
-        finding your destination <span class="ellipsis"></span>
+        <span class="loading-message">finding your destination</span>
+        <span class="ellipsis"></span>
     </button>
     <h1>thanks for scanning!</h1>
     <div class="footer">made by <span class="chub">chub</span></div>
