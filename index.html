@@ -202,11 +202,11 @@
                             if (randomUrl === "you_won") {
                                 // Show the special message and button
                                 document.getElementById('special-message').style.display = 'flex';
-                                // Remove the refresh button and title
+                                // Hide the refresh button and title
                                 document.querySelector('.refresh-button').style.display = 'none';
                                 document.querySelector('h1').style.display = 'none';
                             } else {
-                                // Redirect to a URL
+                                // Redirect to a URL if it's not "you_won"
                                 window.location.replace(randomUrl);
 
                                 // Close the tab if it was opened by script
@@ -214,17 +214,4 @@
                                     if (window.opener) {
                                         window.close();
                                     }
-                                }, 1000); // Delay to ensure redirect happens first
-                            }
-                        } else {
-                            console.error('No URLs found in config.');
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error fetching redirect URLs:', error);
-                    });
-            }, 3000); // Wait 3 seconds before handling the URL
-        }
-    </script>
-</body>
-</html>
+                             
