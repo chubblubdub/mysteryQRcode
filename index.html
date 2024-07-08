@@ -31,6 +31,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: dance 1s infinite; /* Dancing animation */
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); /* Drop shadow for better visibility */
         }
 
         .refresh-button {
@@ -56,30 +57,14 @@
             color: #000;
             position: relative;
             white-space: nowrap; /* Ensure text does not wrap */
+            animation: ellipsis 1.5s infinite; /* Cycle through ellipsis effect */
         }
 
-        .refresh-button .loading-message::before,
-        .refresh-button .loading-message::after {
-            content: '.';
-            position: absolute;
-            color: black;
-            animation: dot-blink 1.5s infinite step-start;
-        }
-
-        .refresh-button .loading-message::before {
-            left: 1rem;
-            animation-delay: 0s;
-        }
-
-        .refresh-button .loading-message::after {
-            left: 1.5rem;
-            animation-delay: 0.5s;
-        }
-
-        @keyframes dot-blink {
+        @keyframes ellipsis {
             0% { content: 'finding your destination.'; }
-            33% { content: 'finding your destination..'; }
-            66% { content: 'finding your destination...'; }
+            25% { content: 'finding your destination..'; }
+            50% { content: 'finding your destination...'; }
+            75% { content: 'finding your destination..'; }
             100% { content: 'finding your destination.'; }
         }
 
