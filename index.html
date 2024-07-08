@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thanks for Scanning!</title>
+    <title>thanks for scanning!</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600&display=swap'); /* Bubbly font */
+
         body {
             display: flex;
             flex-direction: column;
@@ -27,6 +29,7 @@
             background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            animation: dance 1s infinite; /* Dancing animation */
         }
 
         .footer {
@@ -37,36 +40,36 @@
 
         .refresh-button {
             margin-top: 20px;
-            width: 60px;
-            height: 60px;
+            padding: 10px 20px;
             background: #fff;
             border: none;
             border-radius: 8px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             cursor: pointer;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             position: relative;
-        }
-
-        .refresh-button svg {
-            width: 24px;
-            height: 24px;
-            fill: #000;
+            font-size: 1.2em;
+            color: #000;
         }
 
         .refresh-button:hover {
             background: #f0f0f0;
         }
+
+        @keyframes dance {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
     </style>
 </head>
 <body>
-    <h1>Thanks for Scanning!</h1>
+    <h1>thanks for scanning!</h1>
     <div class="footer">made by chub</div>
     <button class="refresh-button" onclick="window.location.reload();">
-        <!-- Refresh Icon (SVG) -->
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4v2.27a5.992 5.992 0 0 1 4.93 4.98h2.27C19.35 7.84 16.23 4.84 12 4zm0-2C6.48 2 2 6.48 2 12c0 1.83.36 3.57 1.01 5.16l-2.13 2.13C.5 18.79 0 18.53 0 18c0-.41.21-.77.55-.98l2.07-2.07C2.36 13.78 2 12.4 2 11c0-5.52 4.48-10 10-10 4.84 0 8.86 3.68 9.8 8.5h-2.2c-.7-3.53-3.66-6.5-7.6-6.5z"/></svg>
+        again!
     </button>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
     <script type="text/javascript">
