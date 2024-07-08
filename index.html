@@ -92,11 +92,18 @@
             const audio = new Audio('https://www.soundjay.com/button/sounds/button-16.mp3'); // Replace with your sound URL
             audio.play();
 
-            // Start confetti
+            // Start confetti from the top
             confetti({
                 particleCount: 200,
                 spread: 70,
                 origin: { y: 0.6 }
+            });
+
+            // Start confetti from the bottom
+            confetti({
+                particleCount: 200,
+                spread: 70,
+                origin: { y: 0.9 }  // Adjust y value for bottom burst
             });
 
             // Wait 3 seconds before redirecting
