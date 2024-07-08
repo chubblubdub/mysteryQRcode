@@ -51,6 +51,15 @@
             font-size: 1.2em;
             color: #000;
             pointer-events: none; /* Make the button non-clickable */
+            /* Center text in the button */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .refresh-button .ellipsis::after {
+            content: '...';
+            animation: ellipsis 1s infinite;
         }
 
         .refresh-button:hover {
@@ -73,11 +82,6 @@
         }
 
         /* Animation for ellipsis */
-        .ellipsis::after {
-            content: '...';
-            animation: ellipsis 1s infinite;
-        }
-
         @keyframes ellipsis {
             0% {
                 content: '.';
@@ -98,10 +102,9 @@
     </style>
 </head>
 <body>
-    <button class="refresh-button" disabled>
-        again!
+    <button class="refresh-button">
+        finding your destination <span class="ellipsis"></span>
     </button>
-    <div class="loading-message">finding your destination <span class="ellipsis"></span></div>
     <h1>thanks for scanning!</h1>
     <div class="footer">made by chub</div>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
