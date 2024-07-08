@@ -55,6 +55,7 @@
             font-size: 1rem; /* Fixed font size */
             color: #000;
             position: relative;
+            white-space: nowrap; /* Ensure text does not wrap */
         }
 
         .refresh-button .loading-message::before,
@@ -62,26 +63,23 @@
             content: '.';
             position: absolute;
             color: black;
-            animation: blink 1.5s infinite step-start;
+            animation: dot-blink 1.5s infinite step-start;
         }
 
         .refresh-button .loading-message::before {
-            left: 0;
+            left: 1rem;
             animation-delay: 0s;
         }
 
         .refresh-button .loading-message::after {
-            left: 1rem;
+            left: 1.5rem;
             animation-delay: 0.5s;
         }
 
-        @keyframes blink {
-            0%, 100% {
-                color: black;
-            }
-            50% {
-                color: transparent;
-            }
+        @keyframes dot-blink {
+            0% { content: '.'; }
+            50% { content: '..'; }
+            100% { content: '...'; }
         }
 
         @keyframes dance {
@@ -134,7 +132,7 @@
 
         .footer {
             position: absolute;
-            bottom: 20px; /* Adjust as needed */
+            bottom: 2rem; /* Adjust as needed */
             font-size: 1.5rem; /* Fixed size */
             color: #ddd;
             text-transform: lowercase;
