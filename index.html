@@ -23,7 +23,7 @@
 
         h1 {
             font-family: 'Fredoka One', cursive; /* Apply the bubbly font here */
-            font-size: 4em;
+            font-size: 10vw; /* Size relative to viewport width */
             position: relative;
             margin: 0;
             overflow: hidden;
@@ -34,9 +34,9 @@
         }
 
         .footer {
-            font-size: 1.5em;
+            font-size: 3vw; /* Size relative to viewport width */
             color: #ddd;
-            margin-top: 50px; /* Add more spacing above the footer text */
+            margin-top: 5vh; /* Margin relative to viewport height */
         }
 
         .footer .chub {
@@ -54,53 +54,90 @@
         }
 
         .refresh-button {
-            margin-bottom: 20px; /* Place button above the title */
-            padding: 10px 20px;
+            margin-bottom: 5vh; /* Margin relative to viewport height */
+            padding: 2vh 4vw;
             background: #fff;
             border: none;
-            border-radius: 8px;
+            border-radius: 1vw;
             cursor: not-allowed;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0.5vh 1vh rgba(0, 0, 0, 0.1);
             position: relative;
-            font-size: 1.2em;
+            font-size: 2vw; /* Size relative to viewport width */
             color: #000;
             pointer-events: none; /* Make the button non-clickable */
-            /* Center text in the button */
             display: flex;
             justify-content: center;
             align-items: center;
-            /* Ensure the button size is constant */
-            width: 250px;
-            height: 50px;
+            width: 25vw;
+            height: 8vh;
+            text-transform: lowercase;
         }
 
         .refresh-button .ellipsis {
-            position: relative;
             display: inline-block;
+            width: 2vw;
+            height: 2vh;
+            position: relative;
         }
 
         .refresh-button .ellipsis::before,
-        .refresh-button .ellipsis::after {
+        .refresh-button .ellipsis::after,
+        .refresh-button .ellipsis span {
             content: '.';
             position: absolute;
             color: #000;
-            font-size: 1.2em;
-            animation: ellipsis 1s infinite;
+            font-size: 2vw; /* Size relative to viewport width */
         }
 
         .refresh-button .ellipsis::before {
             left: 0;
-            opacity: 1;
-        }
-
-        .refresh-button .ellipsis::after {
-            left: 1em;
-            opacity: 0.5;
+            animation: ellipsis1 1s infinite;
         }
 
         .refresh-button .ellipsis span {
-            animation: ellipsis 1s infinite;
-            opacity: 0.5;
+            left: 2.5vw;
+            animation: ellipsis2 1s infinite;
+        }
+
+        .refresh-button .ellipsis::after {
+            left: 5vw;
+            animation: ellipsis3 1s infinite;
+        }
+
+        @keyframes ellipsis1 {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.2;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes ellipsis2 {
+            0% {
+                opacity: 0.2;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0.2;
+            }
+        }
+
+        @keyframes ellipsis3 {
+            0% {
+                opacity: 0.2;
+            }
+            50% {
+                opacity: 0.2;
+            }
+            100% {
+                opacity: 1;
+            }
         }
 
         .refresh-button:hover {
@@ -108,9 +145,9 @@
         }
 
         .loading-message {
-            font-size: 1.2em;
+            font-size: 2vw; /* Size relative to viewport width */
             color: #ddd;
-            margin-bottom: 20px; /* Add spacing below the loading message */
+            margin-bottom: 2vh; /* Margin relative to viewport height */
         }
 
         @keyframes dance {
@@ -118,20 +155,7 @@
                 transform: translateY(0);
             }
             50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        /* Animation for ellipsis */
-        @keyframes ellipsis {
-            0% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.5;
-            }
-            100% {
-                opacity: 1;
+                transform: translateY(-2vh);
             }
         }
     </style>
@@ -139,7 +163,9 @@
 <body>
     <button class="refresh-button">
         <span class="loading-message">finding your destination</span>
-        <span class="ellipsis"></span>
+        <span class="ellipsis">
+            <span></span>
+        </span>
     </button>
     <h1>thanks for scanning!</h1>
     <div class="footer">made by <span class="chub">chub</span></div>
