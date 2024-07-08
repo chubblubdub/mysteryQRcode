@@ -73,81 +73,38 @@
             text-transform: lowercase;
         }
 
-        .refresh-button .ellipsis {
-            display: inline-block;
-            width: 2vw;
-            height: 2vh;
+        .refresh-button .loading-message {
+            font-size: 2vw; /* Size relative to viewport width */
+            color: #000;
+            margin-bottom: 2vh; /* Margin relative to viewport height */
             position: relative;
         }
 
-        .refresh-button .ellipsis::before,
-        .refresh-button .ellipsis::after,
-        .refresh-button .ellipsis span {
+        .refresh-button .loading-message::before,
+        .refresh-button .loading-message::after {
             content: '.';
             position: absolute;
-            color: #000;
-            font-size: 2vw; /* Size relative to viewport width */
+            color: transparent;
+            animation: blink 1.5s infinite step-start;
         }
 
-        .refresh-button .ellipsis::before {
-            left: 0;
-            animation: ellipsis1 1s infinite;
+        .refresh-button .loading-message::before {
+            left: 1vw;
+            animation-delay: 0s;
         }
 
-        .refresh-button .ellipsis span {
-            left: 2.5vw;
-            animation: ellipsis2 1s infinite;
+        .refresh-button .loading-message::after {
+            left: 2vw;
+            animation-delay: 0.5s;
         }
 
-        .refresh-button .ellipsis::after {
-            left: 5vw;
-            animation: ellipsis3 1s infinite;
-        }
-
-        @keyframes ellipsis1 {
-            0% {
-                opacity: 1;
+        @keyframes blink {
+            0%, 100% {
+                color: transparent;
             }
             50% {
-                opacity: 0.2;
+                color: black;
             }
-            100% {
-                opacity: 1;
-            }
-        }
-
-        @keyframes ellipsis2 {
-            0% {
-                opacity: 0.2;
-            }
-            50% {
-                opacity: 1;
-            }
-            100% {
-                opacity: 0.2;
-            }
-        }
-
-        @keyframes ellipsis3 {
-            0% {
-                opacity: 0.2;
-            }
-            50% {
-                opacity: 0.2;
-            }
-            100% {
-                opacity: 1;
-            }
-        }
-
-        .refresh-button:hover {
-            background: #f0f0f0;
-        }
-
-        .loading-message {
-            font-size: 2vw; /* Size relative to viewport width */
-            color: #ddd;
-            margin-bottom: 2vh; /* Margin relative to viewport height */
         }
 
         @keyframes dance {
@@ -158,14 +115,20 @@
                 transform: translateY(-2vh);
             }
         }
+
+        @keyframes stretch {
+            0%, 100% {
+                transform: scaleX(1);
+            }
+            50% {
+                transform: scaleX(1.2);
+            }
+        }
     </style>
 </head>
 <body>
     <button class="refresh-button">
         <span class="loading-message">finding your destination</span>
-        <span class="ellipsis">
-            <span></span>
-        </span>
     </button>
     <h1>thanks for scanning!</h1>
     <div class="footer">made by <span class="chub">chub</span></div>
