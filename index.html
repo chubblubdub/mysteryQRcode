@@ -33,26 +33,6 @@
             animation: dance 1s infinite; /* Dancing animation */
         }
 
-        .footer {
-            font-size: 2rem; /* Fixed size */
-            color: #ddd;
-            margin-top: 2rem; /* Fixed margin */
-        }
-
-        .footer .chub {
-            display: inline-block;
-            animation: stretch 1s infinite; /* Stretch animation */
-        }
-
-        @keyframes stretch {
-            0%, 100% {
-                transform: scaleX(1);
-            }
-            50% {
-                transform: scaleX(1.2);
-            }
-        }
-
         .refresh-button {
             margin-bottom: 2rem; /* Fixed margin */
             padding: 0.5rem 1rem;
@@ -160,7 +140,7 @@
 
         .footer {
             position: absolute;
-            bottom: 20px; /* Adjust as needed */
+            bottom: 10px; /* Adjust as needed */
             font-size: 1.5rem; /* Fixed size */
             color: #ddd;
             text-transform: lowercase;
@@ -173,6 +153,7 @@
         <button class="claim-button" onclick="window.location.href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'">click to get your 100 💵</button>
     </div>
     
+    <!-- Title now below the button -->
     <button class="refresh-button">
         <span class="loading-message">finding your destination</span>
     </button>
